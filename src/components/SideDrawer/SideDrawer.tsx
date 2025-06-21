@@ -37,11 +37,9 @@ const SideDrawer = () => {
     }, []);
 
     return (
-        <div>
+        <aside>
             {isMobile && !open && (
-                <div
-                    className='mobile__menu-btn'
-                >
+                <nav aria-label="Mobile menu toggle" className='mobile__menu-btn'>
                     <IconButton
                         onClick={toggleDrawer}
                         aria-label="Open drawer"
@@ -50,49 +48,52 @@ const SideDrawer = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                </div>
+                </nav>
             )}
             <StyledDrawer open={open}
                 variant={isMobile ? 'temporary' : 'permanent'}
                 onClose={() => setOpen(false)}
-                role={isMobile ? 'dialog' : 'navigation'}
                 aria-modal={isMobile ? true : undefined}
             >
-                <header className='drawer__header'>
-                    <img src='/icons/king.png' alt='King Checkmate icon' />
-                    <h2>CheckMate</h2>
-                    {isMobile && (
-                        <IconButton onClick={toggleDrawer}
-                            aria-label={open ? 'Close drawer' : 'Open drawer'}
-                            size="large"
-                            sx={{
-                                position: 'absolute',
-                                top: 8,
-                                right: 8,
-                                color: 'white',
-                            }}>
-                            <ArrowCircleLeftIcon />
-                        </IconButton>
-                    )}
-                </header>
-                <List>
-                    <h3 className='lists__title'>My Lists</h3>
-                    {lists.map((list, index) => {
-                        const isCurrent = currentList?.title === list.title
-                        return (
-                            <StyledListItem aria-current={isCurrent ? 'true' : undefined} selected={isCurrent} key={list.title + '-item'}>
-                                <ListItemButton onClick={() => setCurrentList(list)}>
-                                    {list.title}
-                                </ListItemButton>
+                <nav >
+                    <header className='drawer__header'>
+                        <img src='/icons/king.png' alt='King Checkmate icon' />
+                        <h2>CheckMate</h2>
+                        {isMobile && (
+                            <IconButton onClick={toggleDrawer}
+                                aria-label={open ? 'Close drawer' : 'Open drawer'}
+                                size="large"
+                                sx={{
+                                    position: 'absolute',
+                                    top: 8,
+                                    right: 8,
+                                    color: 'white',
+                                }}>
+                                <ArrowCircleLeftIcon />
+                            </IconButton>
+                        )}
+                    </header>
 
-                                {isCurrent && <IconButton aria-label={`Delete List ${list.title}`}><StyledDeleteListIcon /></IconButton>}
+                    <section>
+                        <h3 className='lists__title'>My Lists</h3>
+                        <List>
+                            {lists.map((list, index) => {
+                                const isCurrent = currentList?.title === list.title;
+                                return (
+                                    <StyledListItem aria-current={isCurrent ? 'true' : undefined} selected={isCurrent} key={list.title + '-item'}>
+                                        <ListItemButton onClick={() => setCurrentList(list)}>
+                                            {list.title}
+                                        </ListItemButton>
+                                        {isCurrent && <IconButton aria-label={`Delete List ${list.title}`}><StyledDeleteListIcon /></IconButton>}
+                                    </StyledListItem>
+                                )
+                            })}
+                        </List>
 
-                            </StyledListItem>
-                        )
-                    })}
-                </List>
+                    </section>
+                </nav>
             </StyledDrawer>
-        </div>
+        </aside>
     )
 }
 
