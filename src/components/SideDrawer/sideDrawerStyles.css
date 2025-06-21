@@ -1,0 +1,31 @@
+.drawer__header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.drawer__header img {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 0.25rem;
+  margin-left: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.drawer__header h2 {
+  margin: 0;
+}
+.lists__title {
+  font-weight: 500;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.mobile__menu-btn {
+  position: fixed;
+  top: 8;
+  right: 8;
+  z-index: 1;
+}

@@ -1,0 +1,12 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+
+:root {
+  --primary: #252525;
+  --secondary: #f6c666;
+  --background: #131313;
+}

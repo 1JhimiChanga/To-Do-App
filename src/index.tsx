@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { ThemeProvider } from '@emotion/react';
 import theme from './theme';
-
+import "./GlobalStyles.css"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
