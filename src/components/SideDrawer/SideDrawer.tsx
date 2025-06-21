@@ -55,6 +55,8 @@ const SideDrawer = () => {
             <StyledDrawer open={open}
                 variant={isMobile ? 'temporary' : 'permanent'}
                 onClose={() => setOpen(false)}
+                role={isMobile ? 'dialog' : 'navigation'}
+                aria-modal={isMobile ? true : undefined}
             >
                 <header className='drawer__header'>
                     <img src='/icons/king.png' alt='King Checkmate icon' />
@@ -78,12 +80,12 @@ const SideDrawer = () => {
                     {lists.map((list, index) => {
                         const isCurrent = currentList?.title === list.title
                         return (
-                            <StyledListItem selected={isCurrent} key={list.title + '-item'}>
+                            <StyledListItem aria-current={isCurrent ? 'true' : undefined} selected={isCurrent} key={list.title + '-item'}>
                                 <ListItemButton onClick={() => setCurrentList(list)}>
                                     {list.title}
                                 </ListItemButton>
 
-                                {isCurrent && <IconButton><StyledDeleteListIcon /></IconButton>}
+                                {isCurrent && <IconButton aria-label={`Delete List ${list.title}`}><StyledDeleteListIcon /></IconButton>}
 
                             </StyledListItem>
                         )
