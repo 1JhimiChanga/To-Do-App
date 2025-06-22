@@ -14,6 +14,8 @@ const TaskBoard = () => {
         month: 'short',
         day: '2-digit'
     });
+
+    // Return appropriate salutation
     const getTimeOfDay = () => {
         const hour = new Date().getHours();
 

@@ -35,10 +35,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
                     ))}
                 </div>
             </section>
-
-
         </StyledTaskItem>
-
     );
 };
 
