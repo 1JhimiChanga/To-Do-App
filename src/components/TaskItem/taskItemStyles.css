@@ -1,0 +1,43 @@
+.task-item__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.task-item__button {
+  display: flex;
+  align-items: center;
+}
+.task-item__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.task-prio-tag {
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.task-prio-tag.high {
+  background-color: #e53935; /* red */
+  color: white;
+}
+
+.task-prio-tag.medium {
+  background-color: #fdd835; /* yellow */
+  color: black;
+}
+
+.task-prio-tag.low {
+  background-color: #1e88e5; /* blue */
+  color: white;
+}
+
+.task-item__main {
+  width: 100%;
+}

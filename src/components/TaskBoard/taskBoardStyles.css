@@ -1,0 +1,24 @@
+.taskboard__wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: white;
+  height: 100%;
+  overflow-x: hidden;
+  margin-left: 5rem;
+}
+
+.taskboard__header {
+  margin-bottom: 2rem;
+}
+
+.taskboard__wrapper > div {
+  margin-top: 5rem;
+}
+
+.taskboard__wrapper h1,
+h3 {
+  margin: 0;
+}
