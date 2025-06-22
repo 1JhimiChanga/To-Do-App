@@ -1,26 +1,33 @@
-
 import React from 'react'
 import { Stack, ToggleButtonGroup, Autocomplete } from '@mui/material'
 import { Controller, Control, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form'
 import { StyledAddTaskButton, StyledChip, StyledTextfield, StyledToggleButton } from './taskFormStyledComponents'
 import { TaskFormValues } from '../../types/tasks'
 
-
 interface TaskFormProps {
     control: Control<TaskFormValues>
     handleSubmit: UseFormHandleSubmit<TaskFormValues>
     onSubmit: SubmitHandler<TaskFormValues>
     submitLabel: string
-
 }
+
 const TaskForm = ({ control, handleSubmit, onSubmit, submitLabel }: TaskFormProps) => {
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="taskform__form" aria-labelledby="add-task-form-title">
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="taskform__form"
+            aria-labelledby="add-task-form-title"
+            noValidate
+        >
+            {/* Visually hidden form title for screen readers */}
+            <h2 id="add-task-form-title" style={{ position: 'absolute', left: '-9999px', height: 0, overflow: 'hidden' }}>
+                Add or edit task
+            </h2>
+
             <Stack spacing={3}>
                 {/* Task name input */}
-                {/* Task name input */}
                 <Controller
-                    name="name"   // <-- FIXED HERE
+                    name="name"
                     control={control}
                     render={({ field }) => (
                         <StyledTextfield
@@ -40,7 +47,7 @@ const TaskForm = ({ control, handleSubmit, onSubmit, submitLabel }: TaskFormProp
                     render={({ field }) => {
                         const formattedDate = field.value instanceof Date
                             ? field.value.toISOString().substring(0, 10)
-                            : field.value || "";
+                            : field.value || ""
 
                         return (
                             <StyledTextfield
@@ -51,17 +58,14 @@ const TaskForm = ({ control, handleSubmit, onSubmit, submitLabel }: TaskFormProp
                                 InputLabelProps={{ shrink: true }}
                                 fullWidth
                                 value={formattedDate}
-                                onChange={(e) => {
-                                    // Convert date string back to Date if your form expects Date objects
-                                    field.onChange(e.target.value);
-                                }}
+                                onChange={(e) => field.onChange(e.target.value)}
                                 onBlur={field.onBlur}
                                 name={field.name}
+                                inputProps={{ 'aria-describedby': 'due-date-helptext' }}
                             />
-                        );
+                        )
                     }}
                 />
-
 
                 {/* Hashtag/tag input with autocomplete */}
                 <Controller
@@ -86,7 +90,16 @@ const TaskForm = ({ control, handleSubmit, onSubmit, submitLabel }: TaskFormProp
                                 ))
                             }
                             renderInput={(params) => (
-                                <StyledTextfield {...params} size="small" label="Hashtags" placeholder="Add tags" />
+                                <StyledTextfield
+                                    {...params}
+                                    size="small"
+                                    label="Hashtags"
+                                    placeholder="Add tags"
+                                    inputProps={{
+                                        ...params.inputProps,
+                                        'aria-label': 'Add hashtags',
+                                    }}
+                                />
                             )}
                         />
                     )}
@@ -104,7 +117,7 @@ const TaskForm = ({ control, handleSubmit, onSubmit, submitLabel }: TaskFormProp
                                     display: 'block',
                                     marginBottom: '0.5rem',
                                     fontSize: '0.9rem',
-                                    marginTop: '-0.85rem'
+                                    marginTop: '-0.85rem',
                                 }}
                             >
                                 Priority
@@ -121,13 +134,31 @@ const TaskForm = ({ control, handleSubmit, onSubmit, submitLabel }: TaskFormProp
                                 color="primary"
                                 aria-labelledby="priority-label"
                             >
-                                <StyledToggleButton size="small" value="high">
+                                <StyledToggleButton
+                                    size="small"
+                                    value="high"
+                                    aria-checked={field.value === 'high'}
+                                    role="radio"
+
+                                >
                                     High
                                 </StyledToggleButton>
-                                <StyledToggleButton size="small" value="medium">
+                                <StyledToggleButton
+                                    size="small"
+                                    value="medium"
+                                    aria-checked={field.value === 'medium'}
+                                    role="radio"
+
+                                >
                                     Medium
                                 </StyledToggleButton>
-                                <StyledToggleButton size="small" value="low">
+                                <StyledToggleButton
+                                    size="small"
+                                    value="low"
+                                    aria-checked={field.value === 'low'}
+                                    role="radio"
+
+                                >
                                     Low
                                 </StyledToggleButton>
                             </ToggleButtonGroup>
@@ -136,7 +167,10 @@ const TaskForm = ({ control, handleSubmit, onSubmit, submitLabel }: TaskFormProp
                 />
 
                 {/* Submit button */}
-                <StyledAddTaskButton aria-label="add-task-button" type="submit">
+                <StyledAddTaskButton
+                    type="submit"
+                    aria-label={`Submit task form to ${submitLabel.toLowerCase()}`}
+                >
                     {submitLabel}
                 </StyledAddTaskButton>
             </Stack>

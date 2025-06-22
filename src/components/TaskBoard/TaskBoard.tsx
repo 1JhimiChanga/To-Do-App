@@ -35,8 +35,8 @@ const TaskBoard = () => {
                     <h1>Good {getTimeOfDay()}</h1>
                 </header>
                 <section>
-                    <AddTask />
                     <List>
+                        <AddTask />
                         {currentList?.tasks.map((task, index) => {
                             return (
                                 <TaskItem key={task.name} task={task} />

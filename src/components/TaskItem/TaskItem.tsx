@@ -59,7 +59,9 @@ const TaskItem = ({ task }: TaskItemProps) => {
     return (
         <StyledTaskItem className="taskitem__container">
             <div className="task-item__header">
-                <span>{currentDate}</span>
+                <time dateTime={new Date(task.date).toISOString()} aria-label={`Due date: ${currentDate}`}>
+                    {currentDate}
+                </time>
                 <div className="task-item__prio-tag">
                     <TaskPrioTag priority={task.priority} />
                 </div>
@@ -67,7 +69,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
 
             <section className="task-item__main">
                 <div className="task-item__button">
-                    <Radio />
+                    <Radio aria-label={`radio-${task.name}-button`} />
                     <span>{task.name}</span>
                 </div>
                 <div className="task-item__tags">
