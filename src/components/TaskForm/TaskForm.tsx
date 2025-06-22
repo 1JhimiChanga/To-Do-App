@@ -7,11 +7,12 @@ import { useForm, Controller } from 'react-hook-form'
 import "./taskForm.css"
 import theme from '../../theme';
 import { Task } from '../../types/tasks';
-import { StyledChip, StyledTextfield, StyledToggleButton } from './taskFormStyledComponents';
+import { StyledAddTaskButton, StyledChip, StyledTextfield, StyledToggleButton } from './taskFormStyledComponents';
+import { useListContext } from '../../context/ListContext';
 type TaskFormValues = Omit<Task, 'completed'>;
 
 const TaskForm = () => {
-
+    const { currentList, setCurrentList } = useListContext();
     const { control, handleSubmit, reset } = useForm<TaskFormValues>({
         defaultValues: {
             name: '',
@@ -23,13 +24,21 @@ const TaskForm = () => {
     })
 
     const onSubmit = (data: Omit<Task, 'completed'>) => {
+        if (!currentList) return;
+
         const newTask: Task = {
             ...data,
             completed: false,
             tags: data.tags || [],
         };
 
-        console.log(newTask);
+        // Add the task to the current list
+        const updatedList = {
+            ...currentList,
+            tasks: [...currentList.tasks, newTask]
+        }
+
+        setCurrentList(updatedList)
         reset()
     };
     return (
@@ -118,7 +127,7 @@ const TaskForm = () => {
                             )}
                         />
 
-                        <Button aria-label='add-task-button' type="submit" sx={{ backgroundColor: theme.palette.secondary.main, width: "100%" }}>Add Task</Button>
+                        <StyledAddTaskButton aria-label='add-task-button' type="submit" >Add Task</StyledAddTaskButton>
 
                     </Stack>
                 </form>

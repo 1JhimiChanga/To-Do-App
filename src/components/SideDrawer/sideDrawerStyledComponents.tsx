@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Drawer, ListItem } from '@mui/material';
+import { Button, colors, Drawer, ListItem, Stack } from '@mui/material';
 import DeleteListIcon from '@mui/icons-material/HighlightOff';
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     '& .MuiDrawer-paper': {
@@ -27,6 +27,7 @@ export const StyledListItem = styled(ListItem, {
     width: "80%",
     marginLeft: '1rem',
     paddingLeft: "0",
+
     borderRadius: "7px"
 }));
 
@@ -38,4 +39,23 @@ export const StyledDeleteListIcon = styled(DeleteListIcon)(({ theme }) => ({
     '&:hover': {
         color: theme.palette.primary.main,
     },
+}));
+
+export const StyledAddListButton = styled(Stack)(({ theme }) => ({
+    border: `1px solid ${theme.palette.secondary.main}`,
+    color: theme.palette.secondary.main,
+    width: "80%",
+    marginLeft: '1rem',
+    borderRadius: "0 0 7px 7px",
+    marginTop: "1rem",
+    height: '2.3rem',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+
+    '&:hover': {
+        transform: 'scale(1.03)',
+        boxShadow: `0px 4px 10px ${theme.palette.secondary.main}33`,
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.main
+    }
 }));

@@ -4,12 +4,12 @@ import { TaskList } from '../../types/tasks';
 import { List } from '@mui/material';
 import TaskItem from '../TaskItem/TaskItem';
 import TaskForm from '../TaskForm/TaskForm';
+import { useListContext } from '../../context/ListContext';
 
-interface TaskBoardProps {
-    taskList: TaskList | null
-}
 
-const TaskBoard = ({ taskList }: TaskBoardProps) => {
+const TaskBoard = () => {
+    const { currentList } = useListContext();
+
     const currentDate = new Date().toLocaleDateString('en-US', {
         month: 'short',
         day: '2-digit'
@@ -33,7 +33,7 @@ const TaskBoard = ({ taskList }: TaskBoardProps) => {
                 <section>
                     <TaskForm />
                     <List>
-                        {taskList?.tasks.map((task, index) => {
+                        {currentList?.tasks.map((task, index) => {
                             return (
                                 <TaskItem task={task} />
                             )
