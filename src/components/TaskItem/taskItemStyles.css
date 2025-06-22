@@ -24,17 +24,17 @@
 }
 
 .task-prio-tag.high {
-  background-color: #e53935; /* red */
+  background-color: #e53935;
   color: white;
 }
 
 .task-prio-tag.medium {
-  background-color: #fdd835; /* yellow */
+  background-color: #fdd835;
   color: black;
 }
 
 .task-prio-tag.low {
-  background-color: #1e88e5; /* blue */
+  background-color: #1e88e5;
   color: white;
 }
 

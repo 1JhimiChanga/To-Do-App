@@ -14,7 +14,7 @@ interface SideDrawerProps { currentList: TaskList | null, setCurrentList: React.
 
 const SideDrawer = ({ currentList, setCurrentList }: SideDrawerProps) => {
     const [open, setOpen] = useState<boolean>(true);
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [lists, setLists] = useState<TaskList[]>([])
     const toggleDrawer = () => {
         setOpen(prev => !prev);

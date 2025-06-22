@@ -9,7 +9,7 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
         boxSizing: 'border-box',
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
             width: '100vw',
         },
     },

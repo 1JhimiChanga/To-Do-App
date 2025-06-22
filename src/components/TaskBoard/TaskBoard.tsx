@@ -3,6 +3,7 @@ import "./taskBoardStyles.css"
 import { TaskList } from '../../types/tasks';
 import { List } from '@mui/material';
 import TaskItem from '../TaskItem/TaskItem';
+import TaskForm from '../TaskForm/TaskForm';
 
 interface TaskBoardProps {
     taskList: TaskList | null
@@ -30,7 +31,7 @@ const TaskBoard = ({ taskList }: TaskBoardProps) => {
                     <h1>Good {getTimeOfDay()}</h1>
                 </header>
                 <section>
-
+                    <TaskForm />
                     <List>
                         {taskList?.tasks.map((task, index) => {
                             return (

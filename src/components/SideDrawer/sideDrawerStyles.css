@@ -27,7 +27,7 @@
 
 .mobile__menu-btn {
   position: absolute;
-  top: 8;
+  top: 0;
   right: 8;
   z-index: 1;
 }
