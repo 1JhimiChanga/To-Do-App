@@ -6,19 +6,22 @@
         "name": "Buy groceries",
         "date": "2025-06-21T10:00:00.000Z",
         "tags": ["errand", "shopping"],
-        "completed": false
+        "completed": false,
+        "priority": "medium"
       },
       {
         "name": "Call Mom",
         "date": "2025-06-21T18:00:00.000Z",
         "tags": ["family"],
-        "completed": true
+        "completed": true,
+        "priority": "high"
       },
       {
         "name": "Read a book",
         "date": "2025-06-22T20:00:00.000Z",
         "tags": ["relax", "reading"],
-        "completed": false
+        "completed": false,
+        "priority": "low"
       }
     ]
   },
@@ -29,13 +32,15 @@
         "name": "Finish feature ticket #452",
         "date": "2025-06-21T09:00:00.000Z",
         "tags": ["work", "frontend"],
-        "completed": false
+        "completed": false,
+        "priority": "high"
       },
       {
         "name": "Reply to client emails",
         "date": "2025-06-21T11:30:00.000Z",
         "tags": ["work", "communication"],
-        "completed": true
+        "completed": true,
+        "priority": "medium"
       }
     ]
   },
@@ -46,25 +51,29 @@
         "name": "Vacuum the apartment",
         "date": "2025-06-22T14:00:00.000Z",
         "tags": ["chores", "cleaning"],
-        "completed": false
+        "completed": false,
+        "priority": "medium"
       },
       {
         "name": "Do laundry",
         "date": "2025-06-22T15:30:00.000Z",
         "tags": ["chores"],
-        "completed": false
+        "completed": false,
+        "priority": "low"
       },
       {
         "name": "Water plants",
         "date": "2025-06-22T16:00:00.000Z",
         "tags": ["plants"],
-        "completed": true
+        "completed": true,
+        "priority": "low"
       },
       {
         "name": "Organize closet",
         "date": "2025-06-22T17:00:00.000Z",
         "tags": ["cleaning", "home"],
-        "completed": false
+        "completed": false,
+        "priority": "medium"
       }
     ]
   }

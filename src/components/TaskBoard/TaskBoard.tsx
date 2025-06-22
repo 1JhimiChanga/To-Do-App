@@ -24,19 +24,22 @@ const TaskBoard = ({ taskList }: TaskBoardProps) => {
 
     return (
         <main className='taskboard__wrapper'>
-            <header>
-                <span>{currentDate}</span>
-                <h1>Good {getTimeOfDay()}</h1>
-            </header>
-            <section>
-                <List>
-                    {taskList?.tasks.map((task, index) => {
-                        return (
-                            <TaskItem task={task} />
-                        )
-                    })}
-                </List>
-            </section>
+            <div>
+                <header>
+                    <span>{currentDate}</span>
+                    <h1>Good {getTimeOfDay()}</h1>
+                </header>
+                <section>
+                    <List>
+                        {taskList?.tasks.map((task, index) => {
+                            return (
+                                <TaskItem task={task} />
+                            )
+                        })}
+                    </List>
+                </section>
+            </div>
+
         </main>
     )
 }

@@ -22,15 +22,15 @@ const SideDrawer = ({ currentList, setCurrentList }: SideDrawerProps) => {
 
 
     function parseListDB(raw: typeof listDB): TaskList[] {
-        return raw.map(list => ({
+        return raw.map((list) => ({
             ...list,
-            tasks: list.tasks.map(task => ({
+            tasks: list.tasks.map((task) => ({
                 ...task,
                 date: new Date(task.date),
+                priority: task.priority as "high" | "medium" | "low", // 👈 cast here
             })),
         }));
     }
-
     useEffect(() => {
         const parsedLists = parseListDB(listDB);
         setLists(parsedLists);
