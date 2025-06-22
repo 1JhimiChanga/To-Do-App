@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./taskBoardStyles.css"
-import { TaskList } from '../../types/tasks';
 import { List } from '@mui/material';
 import TaskItem from '../TaskItem/TaskItem';
-import TaskForm from '../TaskForm/TaskForm';
 import { useListContext } from '../../context/ListContext';
+import AddTask from '../TaskForm/AddTask';
+
 
 
 const TaskBoard = () => {
     const { currentList } = useListContext();
+
+
 
     const currentDate = new Date().toLocaleDateString('en-US', {
         month: 'short',
@@ -33,11 +35,11 @@ const TaskBoard = () => {
                     <h1>Good {getTimeOfDay()}</h1>
                 </header>
                 <section>
-                    <TaskForm />
                     <List>
+                        <AddTask />
                         {currentList?.tasks.map((task, index) => {
                             return (
-                                <TaskItem task={task} />
+                                <TaskItem key={task.name} task={task} />
                             )
                         })}
                     </List>
