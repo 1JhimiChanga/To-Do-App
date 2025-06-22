@@ -1,4 +1,4 @@
-import { Chip, styled, TextField, ToggleButton } from "@mui/material";
+import { Button, Chip, styled, TextField, ToggleButton } from "@mui/material";
 
 export const StyledTextfield = styled(TextField)(({ theme }) => ({
 
@@ -46,4 +46,18 @@ export const StyledChip = styled(Chip)(({ theme }) => ({
         color: theme.palette.secondary.dark,
 
     },
+}));
+
+export const StyledAddTaskButton = styled(Button)(({ theme }) => ({
+    backgroundColor: theme.palette.secondary.main,
+    width: "100%",
+    transition: 'all 0.3s ease',
+    border: `1px solid ${theme.palette.primary.main}`,
+    '&:hover': {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.secondary.main,
+        border: `1px solid ${theme.palette.secondary.main}`,
+    },
+    marginBottom: "1rem",
+    borderRadius: "7px"
 }));

@@ -4,6 +4,7 @@ import './App.css';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import TaskBoard from './components/TaskBoard/TaskBoard';
 import { TaskList } from './types/tasks';
+import { ListProvider } from './context/ListContext';
 
 function App() {
 
@@ -11,8 +12,11 @@ function App() {
 
   return (
     <div className="app__wrapper">
-      <SideDrawer currentList={currentList} setCurrentList={setCurrentList} />
-      <TaskBoard taskList={currentList} />
+      <ListProvider currentList={currentList} setCurrentList={setCurrentList}>
+        <SideDrawer />
+        <TaskBoard />
+      </ListProvider>
+
     </div>
   );
 }
