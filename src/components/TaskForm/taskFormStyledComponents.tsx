@@ -1,4 +1,4 @@
-import { styled, TextField, ToggleButton } from "@mui/material";
+import { Chip, styled, TextField, ToggleButton } from "@mui/material";
 
 export const StyledTextfield = styled(TextField)(({ theme }) => ({
 
@@ -32,5 +32,18 @@ export const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
     '&.Mui-selected': {
         color: theme.palette.secondary.main,
         borderColor: theme.palette.secondary.main,
+    },
+}));
+
+export const StyledChip = styled(Chip)(({ theme }) => ({
+    backgroundColor: theme.palette.secondary.light,
+    color: theme.palette.secondary.contrastText,
+    borderColor: theme.palette.secondary.main,
+    fontWeight: 500,
+    fontSize: '0.75rem',
+
+    '& .MuiChip-deleteIcon': {
+        color: theme.palette.secondary.dark,
+
     },
 }));
