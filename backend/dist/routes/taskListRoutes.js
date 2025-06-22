@@ -1,6 +1,6 @@
 import express from "express";
-import TaskList from "../models/TaskList";
-import Task from "../models/Task";
+import TaskList from "../models/TaskList.js";
+import Task from "../models/Task.js";
 const router = express.Router();
 // Get all task lists
 router.get("/", async (req, res) => {
