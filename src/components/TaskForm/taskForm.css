@@ -1,0 +1,40 @@
+.taskform__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.taskform__wrapper h1 {
+  font-size: 1rem;
+  color: antiquewhite;
+}
+
+.taskform__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  max-height: 3rem;
+  transition: max-height 0.75s ease;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.taskform__container:hover {
+  max-height: 1000px;
+}
+
+.taskform__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.taskform__form > * {
+  margin: 0.5rem 0;
+}
