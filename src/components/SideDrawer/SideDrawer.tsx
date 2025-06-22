@@ -39,7 +39,7 @@ const SideDrawer = ({ currentList, setCurrentList }: SideDrawerProps) => {
     }, []);
 
     return (
-        <aside>
+        <aside >
             {isMobile && !open && (
                 <nav aria-label="Mobile menu toggle" className='mobile__menu-btn'>
                     <IconButton

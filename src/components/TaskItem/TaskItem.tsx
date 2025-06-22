@@ -1,15 +1,18 @@
 import React from 'react';
 import { Task } from '../../types/tasks';
+import { ListItem, Radio } from '@mui/material';
 
 interface TaskItemProps {
-    task: Task
+    task: Task;
 }
 
 const TaskItem = ({ task }: TaskItemProps) => {
     return (
-        <div>
+        <ListItem className="task-item">
+            <Radio />
             <span>{task.name}</span>
-        </div>
+            {/* More expandable info can go here */}
+        </ListItem>
     );
 };
 

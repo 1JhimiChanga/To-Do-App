@@ -3,12 +3,12 @@ import { Drawer, ListItem } from '@mui/material';
 import DeleteListIcon from '@mui/icons-material/HighlightOff';
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     '& .MuiDrawer-paper': {
-
-        width: '20rem',
+        position: 'relative',
+        width: '25rem',
+        height: "100vh",
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
         boxSizing: 'border-box',
-
         [theme.breakpoints.down('sm')]: {
             width: '100vw',
         },

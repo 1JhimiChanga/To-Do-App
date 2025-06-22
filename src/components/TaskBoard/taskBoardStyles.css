@@ -1,12 +1,20 @@
 .taskboard__wrapper {
+  flex: 1; /* 👈 take all remaining space beside drawer */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   color: white;
-  background-color: var(--background);
-  height: 100vh;
-  width: 100%;
+  height: 100%;
   overflow-x: hidden;
+  margin-left: 5rem;
 }
 
-.taskboard__wrapper div {
-  padding-top: 10rem;
-  padding-left: 25rem;
+.taskboard__wrapper > div {
+  margin-top: 5rem;
+}
+
+.taskboard__wrapper h1,
+h3 {
+  margin: 0;
 }
