@@ -58,6 +58,6 @@ export const StyledAddTaskButton = styled(Button)(({ theme }) => ({
         color: theme.palette.secondary.main,
         border: `1px solid ${theme.palette.secondary.main}`,
     },
-    marginBottom: "1rem",
+
     borderRadius: "7px"
 }));

@@ -41,3 +41,17 @@
 .task-item__main {
   width: 100%;
 }
+
+.taskitem__editform-container {
+  overflow: hidden;
+  max-height: 0rem;
+  transition: all 0.75s ease;
+  width: 100%;
+  border-radius: 8px;
+  padding-top: 0rem;
+}
+
+.taskitem__container:hover .taskitem__editform-container {
+  padding-top: 1.5rem;
+  max-height: 1000px;
+}
