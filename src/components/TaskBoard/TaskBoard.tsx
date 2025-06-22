@@ -25,7 +25,7 @@ const TaskBoard = ({ taskList }: TaskBoardProps) => {
     return (
         <main className='taskboard__wrapper'>
             <div>
-                <header>
+                <header className='taskboard__header'>
                     <h3>{currentDate}</h3>
                     <h1>Good {getTimeOfDay()}</h1>
                 </header>

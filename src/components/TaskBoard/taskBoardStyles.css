@@ -10,6 +10,10 @@
   margin-left: 5rem;
 }
 
+.taskboard__header {
+  margin-bottom: 2rem;
+}
+
 .taskboard__wrapper > div {
   margin-top: 5rem;
 }
