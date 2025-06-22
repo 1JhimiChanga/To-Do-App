@@ -9,11 +9,13 @@ import "./sideDrawerStyles.css"
 import theme from '../../theme';
 import { StyledDeleteListIcon, StyledDrawer, StyledListItem } from './sideDrawerStyledComponents';
 import { TaskList } from '../../types/tasks';
-const SideDrawer = () => {
+
+interface SideDrawerProps { currentList: TaskList | null, setCurrentList: React.Dispatch<React.SetStateAction<TaskList | null>> }
+
+const SideDrawer = ({ currentList, setCurrentList }: SideDrawerProps) => {
     const [open, setOpen] = useState<boolean>(true);
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [lists, setLists] = useState<TaskList[]>([])
-    const [currentList, setCurrentList] = useState<TaskList | null>(null)
     const toggleDrawer = () => {
         setOpen(prev => !prev);
     };

@@ -1,5 +1,4 @@
 .app__wrapper {
-  background-color: var(--background);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
