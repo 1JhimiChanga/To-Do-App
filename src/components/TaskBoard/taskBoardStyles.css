@@ -1,5 +1,5 @@
 .taskboard__wrapper {
-  flex: 1; /* 👈 take all remaining space beside drawer */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -30,6 +30,7 @@ const TaskBoard = ({ taskList }: TaskBoardProps) => {
                     <h1>Good {getTimeOfDay()}</h1>
                 </header>
                 <section>
+
                     <List>
                         {taskList?.tasks.map((task, index) => {
                             return (
