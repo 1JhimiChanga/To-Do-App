@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Box, Icon, IconButton, List, ListItem, ListItemButton, TextField, useMediaQuery } from '@mui/material'
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import MenuIcon from '@mui/icons-material/Menu';
-// mockdb
-import listDB from '../../mockData/listDB.json'
 // styles
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import "./sideDrawerStyles.css"
@@ -11,7 +9,7 @@ import theme from '../../theme';
 import { StyledAddListButton, StyledDeleteListIcon, StyledDrawer, StyledListItem } from './sideDrawerStyledComponents';
 import { TaskList } from '../../types/tasks';
 import { useListContext } from '../../context/ListContext';
-
+import { createTaskList, getTaskLists } from '../../apis/taskList';
 
 const SideDrawer = () => {
     const [open, setOpen] = useState<boolean>(true);
@@ -21,18 +19,31 @@ const SideDrawer = () => {
     // Inside the SideDrawer component
     const [showInput, setShowInput] = useState(false); // Controls visibility of "Add List" input
     const [newListTitle, setNewListTitle] = useState(""); // Holds input value
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     // Adds a new list if input is not empty
-    const handleAddList = () => {
+    const handleAddList = async () => {
         if (!newListTitle.trim()) return;
-        const newList: TaskList = {
-            title: newListTitle.trim(),
-            tasks: [],
-        };
-        setLists(prev => [...prev, newList]);
-        setCurrentList(newList);
-        setNewListTitle("");
-        setShowInput(false);
+
+        setLoading(true);
+        setError(null);
+        try {
+            // Create list on backend
+            const createdList = await createTaskList(newListTitle.trim());
+
+            // Update local state with backend list
+            setLists(prev => [...prev, createdList]);
+            setCurrentList(createdList);
+
+            setNewListTitle("");
+            setShowInput(false);
+        } catch (err) {
+            setError("Failed to create new list");
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     };
     // Handles "Enter" key press to submit list name
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -46,22 +57,24 @@ const SideDrawer = () => {
         setOpen(prev => !prev);
     };
 
-    // Parses the mockDB JSON and casts priorities properly
-    function parseListDB(raw: typeof listDB): TaskList[] {
-        return raw.map((list) => ({
-            ...list,
-            tasks: list.tasks.map((task) => ({
-                ...task,
-                date: new Date(task.date),
-                priority: task.priority as "high" | "medium" | "low", // 👈 cast here
-            })),
-        }));
-    }
+
     // Load and parse lists on mount
     useEffect(() => {
-        const parsedLists = parseListDB(listDB);
-        setLists(parsedLists);
-        if (parsedLists.length > 0) setCurrentList(parsedLists[0])
+        async function fetchLists() {
+            setLoading(true);
+            setError(null);
+            try {
+                const fetchedLists = await getTaskLists();
+                setLists(fetchedLists)
+                if (fetchLists.length > 0) setCurrentList(fetchedLists[0])
+            } catch (err) {
+                setError("Failed to load task lists")
+                console.error(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchLists()
 
     }, []);
 
@@ -110,13 +123,13 @@ const SideDrawer = () => {
                         <h3 className='lists__title'>My Lists</h3>
                         <List>
                             {lists.map((list, index) => {
-                                const isCurrent = currentList?.title === list.title;
+                                const isCurrent = currentList?.name === list.name;
                                 return (
-                                    <StyledListItem aria-current={isCurrent ? 'true' : undefined} selected={isCurrent} key={list.title + '-item'}>
+                                    <StyledListItem aria-current={isCurrent ? 'true' : undefined} selected={isCurrent} key={list.name + '-item'}>
                                         <ListItemButton onClick={() => setCurrentList(list)}>
-                                            {list.title}
+                                            {list.name}
                                         </ListItemButton>
-                                        {isCurrent && <IconButton aria-label={`Delete List ${list.title}`}><StyledDeleteListIcon /></IconButton>}
+                                        {isCurrent && <IconButton aria-label={`Delete List ${list.name}`}><StyledDeleteListIcon /></IconButton>}
                                     </StyledListItem>
                                 )
                             })}

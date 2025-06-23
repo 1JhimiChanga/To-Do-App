@@ -4,8 +4,15 @@ import Task from "../models/Task.js";
 const router = express.Router();
 // Get all task lists
 router.get("/", async (req, res) => {
-    const lists = await TaskList.find().populate("tasks");
-    res.json(lists);
+    try {
+        const lists = await TaskList.find().populate("tasks");
+        console.log("Fetched task lists:", lists);
+        res.json(lists);
+    }
+    catch (error) {
+        console.error("Error fetching task lists:", error);
+        res.status(500).json({ message: "Failed to fetch task lists" });
+    }
 });
 // Create a new task list
 router.post("/", async (req, res) => {

@@ -7,7 +7,7 @@ export interface Task {
 }
 
 export interface TaskList {
-  title: string;
+  name: string;
   tasks: Task[];
 }
 
